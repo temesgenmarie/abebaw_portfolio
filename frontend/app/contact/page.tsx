@@ -16,17 +16,45 @@ export default function Contact() {
     message: "",
   })
 
+  const [loading, setLoading] = useState(false)
+  const [successMessage, setSuccessMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-    alert("Thank you for your message! I will get back to you soon.")
-    setFormData({ name: "", email: "", subject: "", message: "" })
+    setLoading(true)
+    setSuccessMessage("")
+    setErrorMessage("")
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSuccessMessage("Thank you for your message! I will get back to you soon.")
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      } else {
+        setErrorMessage(data.message || "Failed to send message")
+      }
+    } catch (error) {
+      console.error("Error sending message:", error)
+      setErrorMessage("Error sending message. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -109,8 +137,19 @@ export default function Contact() {
                     className="w-full"
                   />
                 </div>
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message
+
+                {successMessage && (
+                  <div className="p-4 bg-accent/10 border border-accent text-accent rounded-lg">{successMessage}</div>
+                )}
+
+                {errorMessage && (
+                  <div className="p-4 bg-destructive/10 border border-destructive text-destructive rounded-lg">
+                    {errorMessage}
+                  </div>
+                )}
+
+                <Button type="submit" size="lg" className="w-full" disabled={loading}>
+                  {loading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
@@ -124,7 +163,11 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-accent flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-foreground/70">hello@example.com</p>
+                    <p className="text-foreground/70">
+                      <a href="mailto:abebawb30@gmail.com" className="hover:text-accent transition-colors">
+                        abebawb30@gmail.com
+                      </a>
+                    </p>
                   </div>
                 </div>
 
@@ -132,7 +175,11 @@ export default function Contact() {
                   <Phone className="w-6 h-6 text-accent flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
-                    <p className="text-foreground/70">+1 (555) 123-4567</p>
+                    <p className="text-foreground/70">
+                      <a href="tel:+251929524222" className="hover:text-accent transition-colors">
+                        +251 929 524 222
+                      </a>
+                    </p>
                   </div>
                 </div>
 
@@ -140,7 +187,7 @@ export default function Contact() {
                   <MapPin className="w-6 h-6 text-accent flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold mb-1">Location</h3>
-                    <p className="text-foreground/70">City, Country</p>
+                    <p className="text-foreground/70">Ethiopia, East Africa</p>
                   </div>
                 </div>
               </div>
@@ -167,7 +214,7 @@ export default function Contact() {
                     <Twitter className="w-5 h-5" />
                   </a>
                   <a
-                    href="#"
+                    href="mailto:abebawb30@gmail.com"
                     className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent text-secondary-foreground hover:text-accent-foreground transition-colors flex items-center justify-center"
                   >
                     <Mail className="w-5 h-5" />

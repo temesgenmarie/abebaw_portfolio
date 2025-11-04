@@ -6,6 +6,8 @@ import authRoutes from "./routes/auth.js"
 import postRoutes from "./routes/posts.js"
 import commentRoutes from "./routes/comments.js"
 import likeRoutes from "./routes/likes.js"
+import contactRoutes from "./routes/contact.js"
+
 
 dotenv.config()
 
@@ -32,6 +34,8 @@ app.use("/api/auth", authRoutes)
 app.use("/api/posts", postRoutes)
 app.use("/api/comments", commentRoutes)
 app.use("/api/likes", likeRoutes)
+app.use("/api/contact", contactRoutes)
+
 
 // Health check
 app.get("/api/health", (req, res) => {

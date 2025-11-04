@@ -3,54 +3,64 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Calendar, User, Tag } from "lucide-react"
+import { useEffect, useState } from "react"
+
+interface BlogPost {
+  _id: string
+  title: string
+  excerpt: string
+  author: { _id: string; name: string }
+  createdAt: string
+  category: string
+  image?: string
+}
 
 export default function Blog() {
-  const posts = [
-    {
-      id: 1,
-      title: "Ethiopia National ID Training: Building National Capacity at Scale",
-      excerpt:
-        "Comprehensive insights from designing and implementing Ethiopia's National ID system training program. Lessons learned in training 100+ master trainers and managing a nationwide rollout affecting millions of citizens.",
-      author: "Abebaw Belete",
-      date: "2024-01-15",
-      category: "Training",
-      image: "/ethiopian-national-id-training-session-classroom.jpg",
-      readTime: "10 min read",
-    },
-    {
-      id: 2,
-      title: "Evidence-Based Policy: Research for National Development in Ethiopia",
-      excerpt:
-        "Exploring how rigorous research and evidence-based approaches drive effective policy making and institutional development in the Ethiopian context. The role of data in shaping national initiatives.",
-      author: "Abebaw Belete",
-      date: "2024-01-10",
-      category: "Research",
-      image: "/research-methodology-laboratory-scientist.jpg",
-      readTime: "8 min read",
-    },
-    {
-      id: 3,
-      title: "Building World-Class Research Institutions in Africa",
-      excerpt:
-        "Strategies for developing research excellence in African universities and institutions. Overcoming challenges, building partnerships, and creating sustainable research ecosystems that contribute to development.",
-      author: "Abebaw Belete",
-      date: "2024-01-05",
-      category: "Academic",
-      image: "/academic-excellence-university-graduation.jpg",
-      readTime: "9 min read",
-    },
-    {
-      id: 4,
-      title: "Trainer Development: Creating Sustainable Impact Through People",
-      excerpt:
-        "How investing in trainer development and capacity building creates multiplier effects. From the National ID project to institutional development, the power of developing local expertise and sustaining impact.",
-      author: "Abebaw Belete",
-      date: "2023-12-28",
-      category: "Development",
-      image: "/professional-development-training-workshop.jpg",
-      readTime: "7 min read",
-    },
-  ]
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
+        const response = await fetch(`${apiUrl}/posts`)
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch posts")
+        }
+
+        const data = await response.json()
+        setPosts(data.data || [])
+      } catch (err) {
+        console.error("Error fetching posts:", err)
+        setError("Failed to load blog posts")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-foreground/60">Loading blog posts...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <p className="text-lg text-destructive">{error}</p>
+          <p className="text-sm text-foreground/60">Unable to load blog posts at the moment</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -69,53 +79,58 @@ export default function Blog() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="space-y-12">
-            {posts.map((post, idx) => (
-              <article
-                key={post.id}
-                className={`flex flex-col ${idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 items-center`}
-              >
-                <div className="flex-1 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
-                      <Tag className="w-3 h-3" /> {post.category}
-                    </span>
+            {posts.length > 0 ? (
+              posts.map((post, idx) => (
+                <article
+                  key={post._id}
+                  className={`flex flex-col ${idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 items-center`}
+                >
+                  <div className="flex-1 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
+                        <Tag className="w-3 h-3" /> {post.category || "General"}
+                      </span>
+                    </div>
+                    <h2 className="text-3xl font-bold hover:text-accent transition-colors">
+                      <Link href={`/blog/${post._id}`}>{post.title}</Link>
+                    </h2>
+                    <p className="text-foreground/70 leading-relaxed text-balance">{post.excerpt}</p>
+                    <div className="flex flex-wrap items-center gap-6 text-sm text-foreground/60 pt-4">
+                      <span className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" /> {new Date(post.createdAt).toLocaleDateString()}
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <User className="w-4 h-4" /> {post.author?.name || "Unknown Author"}
+                      </span>
+                    </div>
+                    <Link
+                      href={`/blog/${post._id}`}
+                      className="inline-flex items-center gap-2 text-accent hover:gap-3 transition-all font-semibold"
+                    >
+                      Read Article <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
-                  <h2 className="text-3xl font-bold hover:text-accent transition-colors">
-                    <Link href={`/blog/${post.id}`}>{post.title}</Link>
-                  </h2>
-                  <p className="text-foreground/70 leading-relaxed text-balance">{post.excerpt}</p>
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-foreground/60 pt-4">
-                    <span className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" /> {new Date(post.date).toLocaleDateString()}
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <User className="w-4 h-4" /> {post.author}
-                    </span>
-                    <span>{post.readTime}</span>
+                  <div className="flex-1">
+                    <Link
+                      href={`/blog/${post._id}`}
+                      className="block overflow-hidden rounded-lg border border-border hover:border-accent transition-all"
+                    >
+                      <Image
+                        src={post.image || "/placeholder.svg?height=400&width=600&query=blog+post"}
+                        alt={post.title}
+                        width={600}
+                        height={400}
+                        className="w-full h-auto hover:scale-105 transition-transform duration-300"
+                      />
+                    </Link>
                   </div>
-                  <Link
-                    href={`/blog/${post.id}`}
-                    className="inline-flex items-center gap-2 text-accent hover:gap-3 transition-all font-semibold"
-                  >
-                    Read Article <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-                <div className="flex-1">
-                  <Link
-                    href={`/blog/${post.id}`}
-                    className="block overflow-hidden rounded-lg border border-border hover:border-accent transition-all"
-                  >
-                    <Image
-                      src={post.image || "/placeholder.svg"}
-                      alt={post.title}
-                      width={600}
-                      height={400}
-                      className="w-full h-auto hover:scale-105 transition-transform duration-300"
-                    />
-                  </Link>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-lg text-foreground/60">No blog posts available yet.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
