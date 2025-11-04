@@ -63,8 +63,8 @@ export default function Home() {
             <div className="flex-1 flex justify-center">
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
                 <Image
-                  src="/professional-portrait-of-ethiopian-male-researcher.jpg"
-                  alt="Abebaw Belete"
+                  src="/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
+                  alt="Abebaw Belay"
                   width={400}
                   height={400}
                   className="w-full h-full object-cover"
