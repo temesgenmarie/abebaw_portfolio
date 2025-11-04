@@ -4,14 +4,14 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { useAuth } from "@/app/auth/context"
-import { Moon, Sun, Menu, X, Phone, Mail, LogOut } from "lucide-react"
+import { Moon, Sun, Menu, X, Phone, Mail, LogOut, Shield } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
 export function Navbar() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
-  const { user, logout } = useAuth()
+  const { user, isAdmin, logout } = useAuth()
   const [mounted, setMounted] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -68,6 +68,17 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
+            {mounted && isAdmin && (
+              <Link
+                href="/admin"
+                className={`text-sm font-medium transition-colors hover:text-accent flex items-center gap-1 ${
+                  isActive("/admin") ? "text-primary border-b-2 border-accent" : "text-foreground/70"
+                }`}
+              >
+                <Shield className="w-4 h-4" />
+                Admin
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-4">
@@ -133,6 +144,19 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {mounted && isAdmin && (
+              <Link
+                href="/admin"
+                onClick={() => setMobileOpen(false)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive("/admin") ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:bg-secondary"
+                }`}
+              >
+                <Shield className="w-4 h-4" />
+                Admin Dashboard
+              </Link>
+            )}
 
             {mounted && (
               <div className="flex gap-2 pt-4 border-t border-border">

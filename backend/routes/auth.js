@@ -20,12 +20,19 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ error: "User already exists" })
     }
 
+    const isOwner = email === "abebawb30@gmail.com"
+
     // Create new user
-    const user = new User({ name, email, password })
+    const user = new User({
+      name,
+      email,
+      password,
+      role: isOwner ? "admin" : "user",
+    })
     await user.save()
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id, email: user.email }, "abebaw", { expiresIn: "7d" })
+    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
 
     console.log("[v0] New user registered:", email)
 
@@ -36,6 +43,7 @@ router.post("/signup", async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
       },
     })
   } catch (error) {
@@ -67,7 +75,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id, email: user.email },"abebaw", { expiresIn: "7d" })
+    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
 
     console.log("[v0] User logged in:", email)
 
@@ -78,6 +86,7 @@ router.post("/login", async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
       },
     })
   } catch (error) {
@@ -94,7 +103,7 @@ router.get("/me", async (req, res) => {
       return res.status(401).json({ error: "No token provided" })
     }
 
-    const decoded = jwt.verify(token, "abebaw")
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     const user = await User.findById(decoded.userId).select("-password")
 
     if (!user) {

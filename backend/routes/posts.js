@@ -2,13 +2,13 @@ import express from "express"
 import multer from "multer"
 import cloudinary from "../config/cloudinary.js"
 import Post from "../models/Post.js"
-import { authMiddleware } from "../middleware/auth.js"
+import { authMiddleware, adminMiddleware } from "../middleware/auth.js"
 
 const router = express.Router()
 const upload = multer({ storage: multer.memoryStorage() })
 
 // Create post
-router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
+router.post("/", authMiddleware, adminMiddleware, upload.single("image"), async (req, res) => {
   try {
     const { title, content, category } = req.body
 
@@ -90,17 +90,12 @@ router.get("/:id", async (req, res) => {
 })
 
 // Update post
-router.put("/:id", authMiddleware, upload.single("image"), async (req, res) => {
+router.put("/:id", authMiddleware, adminMiddleware, upload.single("image"), async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
 
     if (!post) {
       return res.status(404).json({ error: "Post not found" })
-    }
-
-    // Check ownership
-    if (post.userId.toString() !== req.userId) {
-      return res.status(403).json({ error: "Unauthorized to update this post" })
     }
 
     const { title, content, category } = req.body
@@ -141,16 +136,12 @@ router.put("/:id", authMiddleware, upload.single("image"), async (req, res) => {
 })
 
 // Delete post
-router.delete("/:id", authMiddleware, async (req, res) => {
+router.delete("/:id", authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
 
     if (!post) {
       return res.status(404).json({ error: "Post not found" })
-    }
-
-    if (post.userId.toString() !== req.userId) {
-      return res.status(403).json({ error: "Unauthorized to delete this post" })
     }
 
     await Post.findByIdAndDelete(req.params.id)

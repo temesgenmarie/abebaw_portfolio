@@ -7,13 +7,16 @@ export interface AuthResponse {
     id: string
     name: string
     email: string
+    role: string
   }
 }
 
 export interface User {
-  id: string
+  id?: string
+  _id?: string
   name: string
   email: string
+  role?: string
   profileImage?: string
   bio?: string
 }
