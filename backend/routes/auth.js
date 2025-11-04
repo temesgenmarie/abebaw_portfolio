@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
     await user.save()
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
+    const token = jwt.sign({ userId: user._id, email: user.email }, "abebaw", { expiresIn: "7d" })
 
     console.log("[v0] New user registered:", email)
 
@@ -67,7 +67,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" })
+    const token = jwt.sign({ userId: user._id, email: user.email },"abebaw", { expiresIn: "7d" })
 
     console.log("[v0] User logged in:", email)
 
@@ -94,7 +94,7 @@ router.get("/me", async (req, res) => {
       return res.status(401).json({ error: "No token provided" })
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    const decoded = jwt.verify(token, "abebaw")
     const user = await User.findById(decoded.userId).select("-password")
 
     if (!user) {

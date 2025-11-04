@@ -14,7 +14,7 @@ const app = express()
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin:  "http://localhost:3000",
     credentials: true,
   }),
 )
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }))
 
 // Database Connection
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/abebaw-portfolio")
+  .connect( "mongodb+srv://id:tomtech@cluster0.5dlmmv4.mongodb.net/abebaw?appName=Cluster0")
   .then(() => console.log("[v0] MongoDB connected successfully"))
   .catch((err) => console.error("[v0] MongoDB connection error:", err))
 
@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
   })
 })
 
-const PORT = process.env.PORT || 5000
+const PORT =  5000
 app.listen(PORT, () => {
   console.log(`[v0] Server running on http://localhost:${PORT}`)
 })
