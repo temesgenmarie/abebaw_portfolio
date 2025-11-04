@@ -52,7 +52,7 @@ export function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-primary">
-            Abebaw Belete
+            Abebaw Belay
           </Link>
 
           {/* Desktop menu */}
