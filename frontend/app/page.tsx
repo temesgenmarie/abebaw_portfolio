@@ -17,7 +17,7 @@ export default function Home() {
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-balance leading-tight">
                   <span className="text-foreground">Selam, I'm</span>
                   <br />
-                  <span className="text-primary">Abebaw Belete</span>
+                  <span className="text-primary">Abebaw Belay</span>
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-2xl text-balance">
                   Ethiopian PhD researcher and professional trainer dedicated to advancing knowledge through rigorous
