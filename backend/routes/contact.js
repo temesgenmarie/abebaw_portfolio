@@ -1,6 +1,7 @@
-const express = require("express")
-const router = express.Router()
-const Message = require("../models/Message")
+import express from "express";
+import Message from "../models/Message.js";
+
+const router = express.Router();
 
 // Get all messages (admin only - no auth for now)
 router.get("/", async (req, res) => {
