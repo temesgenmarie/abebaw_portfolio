@@ -66,7 +66,7 @@ export default function About() {
           <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
             <div className="w-48 h-48 rounded-lg overflow-hidden border-2 border-primary shadow-lg flex-shrink-0">
               <Image
-                src="Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
+                src="/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
                 alt="Abebaw Belay"
                 width={300}
                 height={300}

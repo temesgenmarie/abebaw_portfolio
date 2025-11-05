@@ -32,7 +32,7 @@ export default function Contact() {
     setErrorMessage("")
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
+      const apiUrl =  "https://abebaw.onrender.com/api"
       const response = await fetch(`${apiUrl}/contact`, {
         method: "POST",
         headers: {

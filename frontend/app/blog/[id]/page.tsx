@@ -3,7 +3,7 @@
 import { Calendar, User, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { BlogComments } from "@/components/blog-comments"
 import { BlogLikes } from "@/components/blog-likes"
 
@@ -16,7 +16,9 @@ interface BlogPost {
   image?: string
 }
 
-export default function BlogPost({ params }: { params: { id: string } }) {
+export default function BlogPost({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
+
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -25,16 +27,18 @@ export default function BlogPost({ params }: { params: { id: string } }) {
     const fetchPost = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
-        const response = await fetch(`${apiUrl}/posts/${params.id}`)
+        console.log("[v0] Fetching post with ID:", id)
+        const response = await fetch(`${apiUrl}/posts/${id}`)
 
         if (!response.ok) {
           throw new Error("Failed to fetch post")
         }
 
         const data = await response.json()
-        setPost(data.data)
+        console.log("[v0] Post data received:", data)
+        setPost(data.data || data)
       } catch (err) {
-        console.error("Error fetching post:", err)
+        console.error("[v0] Error fetching post:", err)
         setError("Failed to load blog post")
       } finally {
         setLoading(false)
@@ -42,7 +46,7 @@ export default function BlogPost({ params }: { params: { id: string } }) {
     }
 
     fetchPost()
-  }, [params.id])
+  }, [id])
 
   if (loading) {
     return (
@@ -128,10 +132,10 @@ export default function BlogPost({ params }: { params: { id: string } }) {
 
           {/* Likes and Comments sections */}
           <div className="mb-8">
-            <BlogLikes postId={params.id} />
+            <BlogLikes postId={id} />
           </div>
 
-          <BlogComments postId={params.id} />
+          <BlogComments postId={id} />
         </div>
       </section>
     </article>

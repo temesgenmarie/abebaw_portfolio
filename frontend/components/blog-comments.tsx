@@ -8,7 +8,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { MessageCircle, Send, Trash2 } from "lucide-react"
-import { commentAPI, type Comment } from "@/lib/api-client"
+import { commentAPI, type Comment, postAPI } from "@/lib/api-client"
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
 
 export function BlogComments({ postId }: { postId: string }) {
   const { user, token } = useAuth()
@@ -23,11 +25,8 @@ export function BlogComments({ postId }: { postId: string }) {
 
   const fetchComments = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/posts/${postId}`)
-      if (response.ok) {
-        const data = await response.json()
-        setComments(data.comments || [])
-      }
+      const data = await postAPI.getPost(postId)
+      setComments(data.comments || [])
     } catch (error) {
       console.error("[v0] Failed to fetch comments:", error)
     } finally {

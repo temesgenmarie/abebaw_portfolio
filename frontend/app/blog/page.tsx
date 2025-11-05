@@ -8,7 +8,8 @@ import { useEffect, useState } from "react"
 interface BlogPost {
   _id: string
   title: string
-  excerpt: string
+  excerpt?: string
+  content: string
   author: { _id: string; name: string }
   createdAt: string
   category: string
@@ -24,17 +25,23 @@ export default function Blog() {
     const fetchPosts = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
+        console.log("[v0] Fetching posts from:", `${apiUrl}/posts`)
+
         const response = await fetch(`${apiUrl}/posts`)
+        console.log("[v0] Response status:", response.status)
 
         if (!response.ok) {
-          throw new Error("Failed to fetch posts")
+          throw new Error(`Failed to fetch posts: ${response.status}`)
         }
 
         const data = await response.json()
-        setPosts(data.data || [])
+        console.log("[v0] Received data:", data)
+
+        const postsData = Array.isArray(data) ? data : data.data || data.posts || []
+        setPosts(postsData)
       } catch (err) {
-        console.error("Error fetching posts:", err)
-        setError("Failed to load blog posts")
+        console.error("[v0] Error fetching posts:", err)
+        setError("Failed to load blog posts. Please try again later.")
       } finally {
         setLoading(false)
       }
@@ -94,13 +101,15 @@ export default function Blog() {
                     <h2 className="text-3xl font-bold hover:text-accent transition-colors">
                       <Link href={`/blog/${post._id}`}>{post.title}</Link>
                     </h2>
-                    <p className="text-foreground/70 leading-relaxed text-balance">{post.excerpt}</p>
+                    <p className="text-foreground/70 leading-relaxed text-balance">
+                      {post.excerpt || post.content.substring(0, 200) + "..."}
+                    </p>
                     <div className="flex flex-wrap items-center gap-6 text-sm text-foreground/60 pt-4">
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" /> {new Date(post.createdAt).toLocaleDateString()}
                       </span>
                       <span className="flex items-center gap-2">
-                        <User className="w-4 h-4" /> {post.author?.name || "Unknown Author"}
+                        <User className="w-4 h-4" /> {post.author?.name || "Abebaw Belete"}
                       </span>
                     </div>
                     <Link
@@ -129,6 +138,7 @@ export default function Blog() {
             ) : (
               <div className="text-center py-12">
                 <p className="text-lg text-foreground/60">No blog posts available yet.</p>
+                <p className="text-sm text-foreground/40 mt-2">Check back soon for new content!</p>
               </div>
             )}
           </div>

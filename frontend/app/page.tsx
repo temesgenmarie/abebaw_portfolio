@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Code, Users, Lightbulb, Phone, Mail } from "lucide-react"
@@ -13,11 +11,11 @@ export default function Home() {
         <div className="max-w-6xl w-full mx-auto py-20">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 space-y-8">
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-4">
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-balance leading-tight">
                   <span className="text-foreground">Selam, I'm</span>
                   <br />
-                  <span className="text-primary">Abebaw Belay</span>
+                  <span className="text-primary">Abebaw Belete</span>
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-2xl text-balance">
                   Ethiopian PhD researcher and professional trainer dedicated to advancing knowledge through rigorous
@@ -31,22 +29,22 @@ export default function Home() {
                 <div className="space-y-3">
                   <a
                     href="tel:+251929524222"
-                    className="flex items-center gap-3 text-foreground/80 hover:text-accent transition-colors group"
+                    className="flex items-center gap-3 text-foreground/80 hover:text-accent transition-colors"
                   >
-                    <Phone className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <Phone className="w-5 h-5 text-primary" />
                     <span className="font-medium">+251 929 524 222</span>
                   </a>
                   <a
                     href="mailto:abebawb30@gmail.com"
-                    className="flex items-center gap-3 text-foreground/80 hover:text-accent transition-colors group"
+                    className="flex items-center gap-3 text-foreground/80 hover:text-accent transition-colors"
                   >
-                    <Mail className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <Mail className="w-5 h-5 text-primary" />
                     <span className="font-medium">abebawb30@gmail.com</span>
                   </a>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/portfolio">
                   <Button size="lg" className="w-full sm:w-auto gap-2">
                     View My Work <ArrowRight className="w-4 h-4" />
@@ -100,7 +98,7 @@ export default function Home() {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="p-6 bg-card rounded-lg border border-border hover:border-accent hover:shadow-lg transition-all duration-300"
+                className="p-6 bg-card rounded-lg border border-border hover:border-accent hover:shadow-lg transition-all"
               >
                 <item.icon className="w-10 h-10 text-accent mb-4" />
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -124,14 +122,14 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6">
             <a
               href="tel:+251929524222"
-              className="flex items-center justify-center gap-3 bg-primary-foreground/20 hover:bg-primary-foreground/30 backdrop-blur px-6 py-4 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-3 bg-primary-foreground/20 hover:bg-primary-foreground/30 px-6 py-4 rounded-lg transition-colors"
             >
               <Phone className="w-5 h-5" />
               <span className="font-semibold">+251 929 524 222</span>
             </a>
             <a
               href="mailto:abebawb30@gmail.com"
-              className="flex items-center justify-center gap-3 bg-primary-foreground/20 hover:bg-primary-foreground/30 backdrop-blur px-6 py-4 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-3 bg-primary-foreground/20 hover:bg-primary-foreground/30 px-6 py-4 rounded-lg transition-colors"
             >
               <Mail className="w-5 h-5" />
               <span className="font-semibold">abebawb30@gmail.com</span>

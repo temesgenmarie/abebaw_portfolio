@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/app/auth/context"
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
   title: "Abebaw Belete - PhD Researcher & Professional Trainer",
   description:
     "Portfolio of Abebaw Belete, PhD researcher specializing in research, training, and professional development with expertise in Ethiopian National ID programs.",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -34,7 +32,6 @@ export default function RootLayout({
             <Footer />
           </AuthProvider>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   )
