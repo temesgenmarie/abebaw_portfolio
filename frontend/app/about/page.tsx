@@ -6,43 +6,59 @@ import { Award, BookOpen, Briefcase } from "lucide-react"
 export default function About() {
   const timelineItems = [
     {
-      year: "2020 - Present",
-      title: "PhD Research in Applied Sciences",
-      institution: "Ethiopian Leading University",
+      year: "2024 - Present",
+      title: "DFS IT Manager",
+      institution: "EthioPost",
       description:
-        "Conducting groundbreaking research focusing on digital transformation, national development systems, and technology adoption in East Africa.",
-      type: "education",
-    },
-    {
-      year: "2019 - 2024",
-      title: "National ID System Training Director",
-      institution: "Government of Ethiopia",
-      description:
-        "Designed and led comprehensive training program for Ethiopian National ID system. Trained 100+ master trainers who successfully deployed the system nationwide, impacting over 2 million registrations.",
+        "Leading digital financial services initiatives at EthioPost, managing IT infrastructure for payment systems and driving digital financial inclusion across the organization.",
       type: "work",
     },
     {
-      year: "2016 - 2020",
-      title: "Master's Degree in Research Methodology",
-      institution: "Addis Ababa Institute of Technology",
+      year: "2022 - 2024",
+      title: "Senior System Architect",
+      institution: "EthSwitch S.C.",
       description:
-        "Specialized in applied research methodologies, data analysis, and project management with distinction. Thesis focused on capacity building in developing countries.",
-      type: "education",
-    },
-    {
-      year: "2015 - 2019",
-      title: "Research & Development Specialist",
-      institution: "Ethiopian Development Agency",
-      description:
-        "Led multiple research initiatives supporting national development programs. Published 8+ policy papers and contributed to strategic planning for institutional reforms.",
+        "Architected digital payment solutions and interoperable systems connecting financial institutions. Designed frameworks for secure, scalable payment infrastructure supporting the broader financial ecosystem.",
       type: "work",
     },
     {
-      year: "2011 - 2015",
-      title: "Bachelor of Science in Social Sciences",
-      institution: "University of Addis Ababa",
+      year: "2021 - 2022",
+      title: "Senior System Admin",
+      institution: "EthSwitch",
       description:
-        "Foundation in research methodology, statistics, and social science principles. Graduated with honors with focus on institutional development.",
+        "Managed critical system infrastructure for national payment systems, ensuring 99.9% uptime and security compliance for millions of transactions daily.",
+      type: "work",
+    },
+    {
+      year: "2019 - 2021",
+      title: "System Engineer",
+      institution: "Kifiya Financial Technology PLC",
+      description:
+        "Designed and implemented FinTech solutions with focus on API development, system integration, and digital payment platforms serving diverse financial institutions.",
+      type: "work",
+    },
+    {
+      year: "2018 - 2019",
+      title: "M.Sc. in Computer Engineering",
+      institution: "Addis Ababa Institute of Technology (AAiT)",
+      description:
+        "Advanced degree specializing in systems architecture, network design, and digital infrastructure. Capstone project on instant and inclusive payment systems.",
+      type: "education",
+    },
+    {
+      year: "2014 - 2018",
+      title: "B.Sc. in Computer Engineering",
+      institution: "Addis Ababa Institute of Technology (AAiT)",
+      description:
+        "Foundation in computer systems, network architecture, and software engineering principles with distinction.",
+      type: "education",
+    },
+    {
+      year: "2012 - 2016",
+      title: "B.Sc. in Information Technology",
+      institution: "Unity University",
+      description:
+        "Comprehensive IT education covering systems analysis, database management, and information systems architecture.",
       type: "education",
     },
   ]
@@ -65,8 +81,9 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
             <div className="w-48 h-48 rounded-lg overflow-hidden border-2 border-primary shadow-lg flex-shrink-0">
+              {/* updated with Abebaw's real photo */}
               <Image
-                src="/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
+                src="/images/design-mode/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
                 alt="Abebaw Belay"
                 width={300}
                 height={300}
@@ -74,23 +91,25 @@ export default function About() {
               />
             </div>
             <div className="flex-1">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-primary">About Abebaw Belete</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-primary">About Abebaw Belay</h1>
               <div className="space-y-4 text-lg text-foreground/80 leading-relaxed">
                 <p>
-                  I am an Ethiopian researcher and trainer dedicated to advancing national development through
-                  evidence-based research, innovative training programs, and strategic institutional development. My
-                  work bridges the gap between academic rigor and practical impact on the ground.
+                  I am a Senior Systems Architect and Digital Financial Services IT Manager with deep expertise in
+                  Digital Public Infrastructure (DPI), digital financial services, and FinTech architecture. My
+                  background spans systems design, payment infrastructure, and the application of AI to solve complex
+                  financial technology challenges.
                 </p>
                 <p>
-                  As a key architect of Ethiopia's National ID system training program, I led the development and
-                  implementation of comprehensive training curricula that trained master trainers across the country.
-                  This national initiative directly impacted millions of Ethiopian citizens and demonstrated the power
-                  of well-designed training and capacity building.
+                  Throughout my career at leading organizations including EthSwitch, Kifiya Financial Technology PLC,
+                  and EthioPost, I have designed and implemented scalable, secure payment systems that serve millions of
+                  users. I specialize in integrating complex financial systems, ensuring compliance with strict
+                  regulatory requirements, and building inclusive payment solutions.
                 </p>
                 <p>
-                  Beyond my government work, I continue to mentor emerging researchers, lead collaborative projects, and
-                  contribute to policy research that shapes development initiatives across East Africa. I believe in
-                  using research and knowledge to solve real-world problems and build stronger institutions.
+                  My expertise covers systems architecture design, information systems analysis, AI/ML applications in
+                  finance, risk mitigation, and security protocols. I am passionate about leveraging technology to drive
+                  financial inclusion across East Africa and promoting gender-sensitive, inclusive environments in the
+                  workplace.
                 </p>
               </div>
             </div>
@@ -135,44 +154,44 @@ export default function About() {
           <h2 className="text-3xl font-bold mb-12 text-primary">Expertise & Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-accent">Research & Development</h3>
+              <h3 className="text-xl font-semibold mb-4 text-accent">Systems & Architecture</h3>
               <ul className="space-y-2 text-foreground/80">
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>National Development Program Design</span>
+                  <span>Digital Public Infrastructure (DPI) Design</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Digital Transformation Research</span>
+                  <span>Digital Financial Services (DFS) Architecture</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Data Analysis & Modeling</span>
+                  <span>Payment Systems Integration & Interoperability</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Institutional Capacity Building</span>
+                  <span>Systems Security & Compliance</span>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-accent">Training & Leadership</h3>
+              <h3 className="text-xl font-semibold mb-4 text-accent">Technical & Management</h3>
               <ul className="space-y-2 text-foreground/80">
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Large-Scale Program Training Management</span>
+                  <span>FinTech Foundation & Application</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Trainer Development & Mentorship</span>
+                  <span>AI/ML for Product Management</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Policy Research & Implementation</span>
+                  <span>Risk Mitigation & Security Protocols</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-1">•</span>
-                  <span>Cross-Functional Collaboration</span>
+                  <span>Strategic Leadership & Project Management</span>
                 </li>
               </ul>
             </div>

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Abebaw Belete - PhD Researcher & Professional Trainer",
   description:
     "Portfolio of Abebaw Belete, PhD researcher specializing in research, training, and professional development with expertise in Ethiopian National ID programs.",
+    generator: 'v0.app'
 }
 
 export default function RootLayout({

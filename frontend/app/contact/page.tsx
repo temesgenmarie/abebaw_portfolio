@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import { contactAPI } from "@/lib/api-client"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,26 +33,12 @@ export default function Contact() {
     setErrorMessage("")
 
     try {
-      const apiUrl =  "https://abebaw.onrender.com/api"
-      const response = await fetch(`${apiUrl}/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        setSuccessMessage("Thank you for your message! I will get back to you soon.")
-        setFormData({ name: "", email: "", subject: "", message: "" })
-      } else {
-        setErrorMessage(data.message || "Failed to send message")
-      }
+      await contactAPI.sendMessage(formData.name, formData.email, formData.subject, formData.message)
+      setSuccessMessage("Thank you for your message! I will get back to you soon.")
+      setFormData({ name: "", email: "", subject: "", message: "" })
     } catch (error) {
-      console.error("Error sending message:", error)
-      setErrorMessage("Error sending message. Please try again.")
+      console.error("[v0] Error sending message:", error instanceof Error ? error.message : String(error))
+      setErrorMessage(error instanceof Error ? error.message : "Error sending message. Please try again.")
     } finally {
       setLoading(false)
     }

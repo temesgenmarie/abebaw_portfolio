@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Code, Users, Lightbulb, Phone, Mail } from "lucide-react"
+import { Code, Users, Lightbulb, Phone, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -13,14 +13,14 @@ export default function Home() {
             <div className="flex-1 space-y-8">
               <div className="space-y-4">
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-balance leading-tight">
-                  <span className="text-foreground">Selam, I'm</span>
+                  <span className="text-foreground">Hello, I'm</span>
                   <br />
-                  <span className="text-primary">Abebaw Belete</span>
+                  <span className="text-primary">Abebaw Belay</span>
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-2xl text-balance">
-                  Ethiopian PhD researcher and professional trainer dedicated to advancing knowledge through rigorous
-                  research and innovative training programs. Specializing in national development initiatives, digital
-                  transformation, and professional education across East Africa.
+                  Senior Systems Architect and Digital Financial Services (DFS) IT Manager specializing in Digital
+                  Public Infrastructure (DPI), FinTech, and instant payment systems. AASIT Alumnus dedicated to
+                  designing secure, scalable solutions that drive financial inclusion across East Africa.
                 </p>
               </div>
 
@@ -45,11 +45,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/portfolio">
-                  <Button size="lg" className="w-full sm:w-auto gap-2">
-                    View My Work <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
+                {/* removed "View My Work" button pointing to portfolio */}
                 <Link href="/contact">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
                     Let's Talk
@@ -60,8 +56,9 @@ export default function Home() {
 
             <div className="flex-1 flex justify-center">
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
+                {/* updated with Abebaw's real photo */}
                 <Image
-                  src="/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
+                  src="/images/design-mode/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
                   alt="Abebaw Belay"
                   width={400}
                   height={400}
@@ -82,18 +79,18 @@ export default function Home() {
             {[
               {
                 icon: Code,
-                title: "National Development Initiatives",
-                desc: "Pioneering research and training programs supporting Ethiopia's digital transformation and institutional development",
+                title: "Digital Public Infrastructure (DPI)",
+                desc: "Expert in designing and implementing DPI systems, digital financial services architecture, and instant payment solutions that drive financial inclusion",
               },
               {
                 icon: Users,
-                title: "Trainer & Mentor",
-                desc: "Leading large-scale training programs for government agencies, trained 100+ trainers for national projects",
+                title: "FinTech & Systems Architecture",
+                desc: "Experienced in integrating complex financial systems, implementing payment gateways, and ensuring strict industry compliance and security standards",
               },
               {
                 icon: Lightbulb,
-                title: "Innovation & Impact",
-                desc: "Transforming research into practical solutions that drive positive change across East Africa",
+                title: "Risk Mitigation & AI Innovation",
+                desc: "Applying machine learning and AI to optimize financial systems, enhance security protocols, and develop next-generation payment solutions",
               },
             ].map((item, idx) => (
               <div

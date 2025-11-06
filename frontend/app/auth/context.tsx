@@ -38,7 +38,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(user)
       setToken(token)
     } catch (error) {
-      localStorage.removeItem("token")
       setLoading(false)
     } finally {
       setLoading(false)
@@ -46,17 +45,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signup = async (name: string, email: string, password: string) => {
-    const response = await authAPI.signup(name, email, password)
-    setUser(response.user)
-    setToken(response.token)
-    localStorage.setItem("token", response.token)
+    try {
+      const response = await authAPI.signup(name, email, password)
+      setUser(response.user as User)
+      setToken(response.token)
+      localStorage.setItem("token", response.token)
+    } catch (error) {
+      throw new Error(
+        error instanceof Error ? error.message : "Signup failed. Please check your information and try again.",
+      )
+    }
   }
 
   const login = async (email: string, password: string) => {
-    const response = await authAPI.login(email, password)
-    setUser(response.user)
-    setToken(response.token)
-    localStorage.setItem("token", response.token)
+    try {
+      const response = await authAPI.login(email, password)
+      setUser(response.user as User)
+      setToken(response.token)
+      localStorage.setItem("token", response.token)
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : "Login failed. Check your email and password.")
+    }
   }
 
   const logout = () => {

@@ -5,65 +5,44 @@ import { Award, Trophy } from "lucide-react"
 export default function Awards() {
   const awards = [
     {
-      title: "National ID Program Excellence Award",
-      issuer: "Government of Ethiopia - Ministry of Innovation",
+      title: "Gender Equality Changemakers Award (Final)",
+      issuer: "Digital Frontiers Institute (DFI)",
       year: 2024,
       description:
-        "Recognition for exceptional leadership and successful implementation of Ethiopia's National ID system training program, impacting millions of citizens nationwide.",
-    },
-    {
-      title: "Excellence in Trainer Development",
-      issuer: "Ethiopian Development Institute",
-      year: 2023,
-      description:
-        "Award for outstanding contribution to capacity building and trainer development that created sustainable impact across national initiatives.",
-    },
-    {
-      title: "Research Excellence in Development",
-      issuer: "East African Research Forum",
-      year: 2023,
-      description:
-        "Recognition for significant research contributions advancing evidence-based policy and institutional development in East Africa.",
-    },
-    {
-      title: "Innovation in National Programs",
-      issuer: "Ethiopian National Development Agency",
-      year: 2022,
-      description:
-        "Award for innovative approaches to large-scale program implementation and organizational excellence.",
+        "Recognition for commitment to promoting gender-sensitive environments and inclusive payment systems in the workplace and through digital solutions.",
     },
   ]
 
   const certifications = [
     {
-      title: "Advanced Research Methodology",
-      issuer: "African Development University",
+      title: "Certified Digital Finance Practitioner (CDFP)",
+      issuer: "Fletcher University and Digital Finance Institute (DFI)",
+      year: 2023,
+    },
+    {
+      title: "IIPS Program Certification",
+      issuer: "Digital Finance Institute (DFI)",
+      year: 2023,
+    },
+    {
+      title: "Digital Public Infrastructure (DPI) Certificate",
+      issuer: "Digital Finance Institute (DFI)",
+      year: 2023,
+    },
+    {
+      title: "Google Project Management Professional",
+      issuer: "Google",
+      year: 2023,
+    },
+    {
+      title: "AI/ML for Product Managers",
+      issuer: "Leading Online Platform",
       year: 2024,
     },
     {
-      title: "Large-Scale Program Management",
-      issuer: "International Development Institute",
+      title: "Machine Learning Foundation for Product Managers",
+      issuer: "Professional Development Institute",
       year: 2023,
-    },
-    {
-      title: "Digital Transformation & Policy",
-      issuer: "East Africa Technology Council",
-      year: 2023,
-    },
-    {
-      title: "Trainer Development & Capacity Building",
-      issuer: "Ethiopian Human Resource Institute",
-      year: 2022,
-    },
-    {
-      title: "Strategic Leadership Program",
-      issuer: "African Management Institute",
-      year: 2022,
-    },
-    {
-      title: "Research Ethics & Excellence",
-      issuer: "Ethiopian Academy of Sciences",
-      year: 2021,
     },
   ]
 
@@ -74,8 +53,8 @@ export default function Awards() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-6">Awards & Certifications</h1>
           <p className="text-xl text-foreground/70 text-balance">
-            Recognition of professional achievements and commitment to excellence in research, training, and national
-            development initiatives.
+            Professional recognition and certifications in Digital Finance, systems architecture, and project
+            management, demonstrating commitment to continuous learning and excellence.
           </p>
         </div>
       </section>

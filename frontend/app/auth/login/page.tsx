@@ -97,12 +97,6 @@ export default function LoginPage() {
               Sign up here
             </Link>
           </div>
-
-          <div className="mt-6 pt-6 border-t border-border">
-            <p className="text-xs text-foreground/50 text-center">Demo Credentials</p>
-            <p className="text-xs text-foreground/50 text-center mt-2">Email: demo@example.com</p>
-            <p className="text-xs text-foreground/50 text-center">Password: demo123</p>
-          </div>
         </div>
       </div>
     </div>
