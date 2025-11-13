@@ -80,15 +80,16 @@ export default function About() {
       <section className="px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
-            <div className="w-48 h-48 rounded-lg overflow-hidden border-2 border-primary shadow-lg flex-shrink-0">
-              {/* updated with Abebaw's real photo */}
+            <div className="w-56 h-72 rounded-xl overflow-hidden border-2 border-primary/30 shadow-xl flex-shrink-0 relative">
               <Image
-                src="/images/design-mode/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
+                src="/images/photo-2025-11-13-15-05-34.jpg"
                 alt="Abebaw Belay"
-                width={300}
-                height={300}
+                width={224}
+                height={288}
                 className="w-full h-full object-cover"
               />
+              {/* Subtle overlay for visual depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent pointer-events-none" />
             </div>
             <div className="flex-1">
               <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-primary">About Abebaw Belay</h1>

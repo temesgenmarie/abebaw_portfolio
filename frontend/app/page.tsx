@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Code, Users, Lightbulb, Phone, Mail } from "lucide-react"
+import { Code, Users, Lightbulb, Phone, Mail, Database, Briefcase, Scale } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -55,16 +55,17 @@ export default function Home() {
             </div>
 
             <div className="flex-1 flex justify-center">
-              <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
-                {/* updated with Abebaw's real photo */}
+              <div className="relative w-72 h-96 rounded-xl overflow-hidden border-2 border-primary/30 shadow-2xl hover:shadow-primary/20 hover:shadow-2xl transition-shadow duration-300">
                 <Image
-                  src="/images/design-mode/Gemini_Generated_Image_j7wcg7j7wcg7j7wc.png"
-                  alt="Abebaw Belay"
-                  width={400}
+                  src="/images/photo-2025-11-13-15-05-34.jpg"
+                  alt="Abebaw Belay - Senior Systems Architect"
+                  width={300}
                   height={400}
                   className="w-full h-full object-cover"
                   priority
                 />
+                {/* Subtle overlay gradient for depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
               </div>
             </div>
           </div>
@@ -106,6 +107,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* DFS Domain Expertise Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="space-y-4 mb-12">
+            <h2 className="text-4xl font-bold">DFS Domain Expertise</h2>
+            <p className="text-lg text-foreground/70 max-w-3xl">
+              Digital Financial Services (DFS) domain expertise represents specialized knowledge in delivering secure,
+              scalable financial technology solutions—particularly to underserved populations. It goes beyond general IT
+              skills to address the unique challenges of financial inclusion, compliance, and operational
+              sustainability.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Database,
+                title: "Technology and Architecture",
+                desc: "Deep expertise in designing and implementing the technical systems that make digital payments possible and scalable. This includes payment infrastructure, real-time processing systems, API integration, data security architectures, and cloud-based solutions that support millions of transactions.",
+              },
+              {
+                icon: Briefcase,
+                title: "Operations and Business Models",
+                desc: "Practical knowledge of running DFS networks efficiently. This encompasses vendor management, merchant acquisition, customer support systems, fraud detection, transaction settlement, business process optimization, and sustainable revenue models for digital financial services.",
+              },
+              {
+                icon: Scale,
+                title: "Regulatory and Market Landscape",
+                desc: "Understanding of the legal, compliance, and market frameworks essential for DFS success. Includes navigating financial regulations, anti-money laundering compliance, data protection laws, market entry strategies, and ensuring systems remain trustworthy and strategically aligned with national development goals.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="p-6 bg-background rounded-lg border border-border hover:border-primary/50 hover:shadow-lg transition-all"
+              >
+                <item.icon className="w-10 h-10 text-primary mb-4" />
+                <h3 className="text-lg font-semibold mb-3">{item.title}</h3>
+                <p className="text-foreground/70 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ready to Work Together Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-6">
