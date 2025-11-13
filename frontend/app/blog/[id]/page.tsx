@@ -83,7 +83,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
               <Calendar className="w-4 h-4" /> {new Date(post.createdAt).toLocaleDateString()}
             </span>
             <span className="flex items-center gap-2">
-              <User className="w-4 h-4" /> {post.author?.name || "Unknown Author"}
+              <User className="w-4 h-4" /> {post.author?.name || "Abebaw Belay"}
             </span>
           </div>
         </div>
@@ -113,8 +113,8 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-primary flex-shrink-0">
                 <Image
-                  src="/professional-portrait-of-ethiopian-male-researcher.jpg"
-                  alt={post.author?.name || "Author"}
+                  src="/images/photo_2025-11-13_15-05-34.jpg"
+                  alt={post.author?.name || "Abebaw Belay"}
                   width={100}
                   height={100}
                   className="w-full h-full object-cover"
