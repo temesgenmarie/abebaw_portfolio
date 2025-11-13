@@ -57,7 +57,7 @@ export default function Home() {
             <div className="flex-1 flex justify-center">
               <div className="relative w-72 h-96 rounded-xl overflow-hidden border-2 border-primary/30 shadow-2xl hover:shadow-primary/20 hover:shadow-2xl transition-shadow duration-300">
                 <Image
-                  src="/images/photo-2025-11-13-15-05-34.jpg"
+                  src="/frontend/public/images/photo_2025-11-13_15-05-34.jpg"
                   alt="Abebaw Belay - Senior Systems Architect"
                   width={300}
                   height={400}
