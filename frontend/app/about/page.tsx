@@ -82,7 +82,7 @@ export default function About() {
           <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
             <div className="w-56 h-72 rounded-xl overflow-hidden border-2 border-primary/30 shadow-xl flex-shrink-0 relative">
               <Image
-                src="/images/photo-2025-11-13-15-05-34.jpg"
+                src="/images/photo_2025-11-13_15-05-34.jpg"
                 alt="Abebaw Belay"
                 width={224}
                 height={288}
