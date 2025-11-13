@@ -123,8 +123,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
               <div>
                 <h3 className="text-xl font-bold mb-2">About the Author</h3>
                 <p className="text-foreground/70 leading-relaxed">
-                  <strong>{post.author?.name}</strong> is a PhD researcher and professional trainer specializing in
-                  research methodology, technical training, and innovation.
+                  <strong>{post.author?.name}</strong> is a Senior Systems Architect with extensive experience in Digital Public Infrastructure and FinTech solutions. Passionate about leveraging technology to drive innovation and create impactful solutions.
                 </p>
               </div>
             </div>
