@@ -13,8 +13,8 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Abebaw Belete",
   description:
-    "Portfolio of Abebaw Belete, PhD researcher specializing in research, training, and professional development with expertise in Ethiopian National ID programs.",
-    generator: 'v0.app'
+    " DFS Domain Expertise | Senior Systems Architect | Digital Public Infrastructure | FinTech Solutions | Risk Mitigation | AI Innovation ",
+    
 }
 
 export default function RootLayout({
