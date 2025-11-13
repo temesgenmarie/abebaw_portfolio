@@ -11,7 +11,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Abebaw Belete",
+  title: "Abebaw Belay",
   description:
     " DFS Domain Expertise | Senior Systems Architect | Digital Public Infrastructure | FinTech Solutions | Risk Mitigation | AI Innovation ",
     
