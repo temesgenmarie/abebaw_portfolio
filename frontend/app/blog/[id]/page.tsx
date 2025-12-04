@@ -3,7 +3,7 @@
 import { Calendar, User, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { BlogComments } from "@/components/blog-comments"
 import { BlogLikes } from "@/components/blog-likes"
 
@@ -11,23 +11,35 @@ interface BlogPost {
   _id: string
   title: string
   content: string
-  author: { _id: string; name: string }
+  author?: { _id?: string; name: string } | string
   createdAt: string
   image?: string
 }
 
-export default function BlogPost({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
-
+export default function BlogPost({ params }: { params: any }) {
+  const [id, setId] = useState<string | null>(null)
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    const resolveParams = async () => {
+      try {
+        const resolved = params?.id ? params : await params
+        setId(resolved.id)
+      } catch {
+        setId(params?.id || null)
+      }
+    }
+    resolveParams()
+  }, [params])
+
+  useEffect(() => {
+    if (!id) return
+
     const fetchPost = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://abebaw.onrender.com/api"
-        console.log("[v0] Fetching post with ID:", id)
         const response = await fetch(`${apiUrl}/posts/${id}`)
 
         if (!response.ok) {
@@ -35,10 +47,8 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
         }
 
         const data = await response.json()
-        console.log("[v0] Post data received:", data)
         setPost(data.data || data)
       } catch (err) {
-        console.error("[v0] Error fetching post:", err)
         setError("Failed to load blog post")
       } finally {
         setLoading(false)
@@ -48,7 +58,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
     fetchPost()
   }, [id])
 
-  if (loading) {
+  if (loading || !id) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-lg text-foreground/60">Loading blog post...</p>
@@ -69,6 +79,12 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
     )
   }
 
+  const getAuthorName = () => {
+    if (typeof post?.author === "string") return post.author
+    if (typeof post?.author === "object" && post.author?.name) return post.author.name
+    return "Abebaw Belay"
+  }
+
   return (
     <article>
       {/* Hero */}
@@ -83,7 +99,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
               <Calendar className="w-4 h-4" /> {new Date(post.createdAt).toLocaleDateString()}
             </span>
             <span className="flex items-center gap-2">
-              <User className="w-4 h-4" /> {post.author?.name || "Abebaw Belay"}
+              <User className="w-4 h-4" /> {getAuthorName()}
             </span>
           </div>
         </div>
@@ -105,7 +121,7 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
           )}
 
           <div className="prose prose-invert max-w-none mb-8">
-            <div className="text-foreground/80 leading-relaxed" dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className="text-foreground/80 leading-relaxed whitespace-pre-wrap">{post.content}</div>
           </div>
 
           {/* Author Bio */}
@@ -113,8 +129,8 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
             <div className="flex gap-6 items-start">
               <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-primary flex-shrink-0">
                 <Image
-                  src="/images/photo_2025-11-13_15-05-34.jpg"
-                  alt={post.author?.name || "Abebaw Belay"}
+                  src="/images/photo-2025-11-13-15-05-34.jpg"
+                  alt={getAuthorName()}
                   width={100}
                   height={100}
                   className="w-full h-full object-cover"
@@ -123,7 +139,10 @@ export default function BlogPost({ params }: { params: Promise<{ id: string }> }
               <div>
                 <h3 className="text-xl font-bold mb-2">About the Author</h3>
                 <p className="text-foreground/70 leading-relaxed">
-                  <strong>{post.author?.name}</strong> is a Senior Systems Architect with extensive experience in Digital Public Infrastructure and FinTech solutions. Passionate about leveraging technology to drive innovation and create impactful solutions.
+                  <strong>{getAuthorName()}</strong> is a Senior Systems Architect and DFS IT Manager with deep
+                  expertise in Digital Financial Services. He specializes in designing secure, scalable technology
+                  platforms for expanding financial inclusion across East Africa, with a focus on building robust
+                  infrastructure for digital payments and fintech innovation.
                 </p>
               </div>
             </div>
