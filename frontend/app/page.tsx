@@ -19,8 +19,8 @@ export default function Home() {
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-2xl text-balance">
                   Senior Systems Architect and Digital Financial Services (DFS) IT Manager specializing in Digital
-                  Public Infrastructure (DPI), FinTech, and instant payment systems. AASIT Alumnus dedicated to
-                  designing secure, scalable solutions that drive financial inclusion across East Africa.
+                  Public Infrastructure (DPI), FinTech, and instant payment systems. AAiT Alumnus dedicated to designing
+                  secure, scalable solutions that drive financial inclusion across East Africa.
                 </p>
               </div>
 
@@ -45,7 +45,6 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                {/* removed "View My Work" button pointing to portfolio */}
                 <Link href="/contact">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
                     Let's Talk
@@ -57,7 +56,7 @@ export default function Home() {
             <div className="flex-1 flex justify-center">
               <div className="relative w-72 h-96 rounded-xl overflow-hidden border-2 border-primary/30 shadow-2xl hover:shadow-primary/20 hover:shadow-2xl transition-shadow duration-300">
                 <Image
-                  src="/images/photo_2025-11-13_15-05-34.jpg"
+                  src="/images/photo-2025-11-13-15-05-34.jpg"
                   alt="Abebaw Belay - Senior Systems Architect"
                   width={300}
                   height={400}
@@ -145,6 +144,102 @@ export default function Home() {
                 <item.icon className="w-10 h-10 text-primary mb-4" />
                 <h3 className="text-lg font-semibold mb-3">{item.title}</h3>
                 <p className="text-foreground/70 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="space-y-4 mb-16">
+            <h2 className="text-4xl font-bold">Key Projects & Initiatives</h2>
+            <p className="text-lg text-foreground/70 max-w-3xl">
+              Building foundational payment infrastructure and advancing research at the intersection of digital public
+              infrastructure, financial inclusion, and artificial intelligence.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                title: "Advanced Research Initiative",
+                category: "Digital Public Infrastructure",
+                description:
+                  "Digital public infrastructure represents the 21st-century equivalent of roads, railways, and power grids. Payment systems form the financial circulatory system, enabling value to flow securely, efficiently, and inclusively. Specializing in architecting the complex intersection of payment systems and DPI—the foundational systems that enable societal and economic functions at scale.",
+                image: "/images/advanced.jpg",
+              },
+              {
+                title: "Academia Research",
+                category: "DQN & MDRNN Predictive Analytics",
+                description:
+                  'Working Title: "Deep Reinforcement Learning and Recurrent Architectures for Financial Time Series: A Systematic Review." Comprehensive literature review of DQN variants in financial applications, MDRNN architectures for multi-dimensional financial data, and hybrid approaches combining reinforcement learning with sequential modeling for payment fraud detection and system optimization.',
+                image: "/images/academic.avif",
+              },
+              {
+                title: "Data Analysis Framework",
+                category: "Agent Network Management",
+                description:
+                  "A comprehensive data analysis structure for optimizing Ethiopia's agent network management. Integrates multi-dimensional data sources with advanced analytical techniques to transform raw data into actionable insights for network optimization, risk management, and financial inclusion enhancement across underserved populations.",
+                image: "/images/data.jpg",
+              },
+              {
+                title: "Collaborative Research Project",
+                category: "Ethiopia's Digital Financial Ecosystem",
+                description:
+                  '"Optimizing Agent Network Management in Ethiopia: A Multi-Agent System Approach for Financial Inclusion." Applying agent-based modeling and multi-agent reinforcement learning to optimize network management, addressing urban-rural divides, infrastructure constraints, and regulatory frameworks for sustainable agent banking.',
+                image: "/images/collaborative.jpg",
+              },
+              {
+                title: "Shared Agent Network Platform",
+                category: "EthioPost - Current",
+                description:
+                  "Leading the implementation of an interoperable 'Single sign-in' platform enabling agents to service customers across any connected financial institution. Designed to dramatically expand financial access at the last mile, directly advancing national financial inclusion goals.",
+                image: "/images/attachments-gen-images-public-digital-payment-systems-architecture-infrastructur.jpg",
+              },
+              {
+                title: "National Payment Switch",
+                category: "EthSwitch S.C.",
+                description:
+                  "Integral role in developing and launching Ethiopia's national payment switch. Led intensive cross-functional collaboration to achieve full payment interoperability between all participating financial institutions with advanced, national-scale payment infrastructure.",
+                image: "/images/attachments-gen-images-public-data-analysis-dashboard.png",
+              },
+              {
+                title: "One-Stop Shop Utility Payment",
+                category: "Kifiya Financial Technology",
+                description:
+                  "Architected and implemented a centralized utility payment platform, establishing the foundational transaction layer for bill payments. Streamlined critical financial processes, enhancing accessibility and reliability for end-users across Ethiopia.",
+                image: "/images/attachments-gen-images-public-team-collaboration-research-meeting.jpg",
+              },
+              {
+                title: "National ID Training Program",
+                category: "Capacity Building",
+                description:
+                  "Led comprehensive training initiatives for Ethiopia's National ID system implementation, building local expertise in digital identity infrastructure. Focused on knowledge transfer and sustainable skill development for long-term system maintenance.",
+                image: "/images/attachments-gen-images-public-ethiopian-national-id-training-session-classroom.jpg",
+              },
+            ].map((project, idx) => (
+              <div
+                key={idx}
+                className="group overflow-hidden rounded-xl border border-border bg-card hover:border-accent hover:shadow-lg transition-all duration-300"
+              >
+                <div className="relative w-full aspect-video overflow-hidden bg-muted">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    width={800}
+                    height={450}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="p-6 space-y-3">
+                  <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                    {project.category}
+                  </span>
+                  <h3 className="text-xl font-semibold text-foreground leading-tight">{project.title}</h3>
+                  <p className="text-foreground/70 text-sm leading-relaxed">{project.description}</p>
+                </div>
               </div>
             ))}
           </div>

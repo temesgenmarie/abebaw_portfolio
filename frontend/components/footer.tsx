@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Linkedin, Mail, Twitter, Phone } from "lucide-react"
+import { Linkedin, Mail, Twitter, Phone, Youtube } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -17,8 +17,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio" className="hover:text-accent transition-colors">
-                  Portfolio
+                <Link href="/services" className="hover:text-accent transition-colors">
+                  Services
                 </Link>
               </li>
               <li>
@@ -81,14 +81,29 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Follow</h3>
             <div className="flex gap-4">
-              <a href="#" className="text-foreground/70 hover:text-accent transition-colors">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-foreground/70 hover:text-accent transition-colors">
+              <a
+                href="https://www.linkedin.com/in/abebaw-belay-298580b6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/70 hover:text-accent transition-colors"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-foreground/70 hover:text-accent transition-colors">
+              <a
+                href="https://x.com/lion_abma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/70 hover:text-accent transition-colors"
+              >
                 <Twitter className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@wubnesh-ethiopia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/70 hover:text-accent transition-colors"
+              >
+                <Youtube className="w-5 h-5" />
               </a>
               <a href="mailto:abebawb30@gmail.com" className="text-foreground/70 hover:text-accent transition-colors">
                 <Mail className="w-5 h-5" />
@@ -98,7 +113,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-sm text-foreground/70">© {currentYear} Abebaw Belete. All rights reserved.</p>
+          <p className="text-sm text-foreground/70">© {currentYear} Abebaw Belay. All rights reserved.</p>
           <p className="text-sm text-foreground/70 mt-4 sm:mt-0">Crafted with precision and expertise</p>
         </div>
       </div>
